@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import React,{ useState} from 'react';
+import WeatherList from './components/WeatherList';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 function App() {
+  
+  let inputValue = "";
+  const WEATHER_API = "3b6b50e42cb94c36820142404211103"
+  const [weatherData, setWeatherData] = useState([]);
+
+  async function showWeatherDays() {
+    const data = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API}&q=${inputValue}&days=7&aqi=no&alerts=no`)
+    const result = await data.json();
+    setWeatherData(result.forecast.forecastday)
+    console.log(result.forecast.forecastday)
+  }
+  
+  function searchCityItem (event) {
+    inputValue = event.target.value;
+    console.log(inputValue);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+
+      <div className="row mb-3 text-center text-white mt-3">
+        <div className="col-lg-12">
+          <h1 className="mb-3">Three Days Weather Forecast</h1>
+          <h4>- Search City and Learn Weather Forecast -</h4>
+        </div>
+      </div>
+
+      <div className="row mb-5">
+        <SearchBar showList={showWeatherDays} searchCity={searchCityItem}/>
+      </div>
+
+      <div className="row mb-5">
+        {
+          weatherData.map((item,index) =>
+            (<WeatherList key={index} date={item.date} iconImg={item.day.condition.icon}
+                          text={item.day.condition.text} minTemp={item.day.mintemp_c} maxTemp={item.day.maxtemp_c}
+            />)
+          )
+        } 
+      </div> 
+
+      
+
     </div>
   );
 }
