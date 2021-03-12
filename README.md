@@ -7,5 +7,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 * git clone https://github.com/ummuhankeles/react-weather-app.git
 * cd react-weather-app
-* yarn # or npm install
-* yarn start # or npm run start
+* npm install
+* npm start
