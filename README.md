@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
+You can take your api key from this [link](https://www.weatherapi.com/).
 ### In the project directory, you can run:
 
 * git clone https://github.com/ummuhankeles/react-weather-app.git
