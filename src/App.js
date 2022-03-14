@@ -11,7 +11,7 @@ function App() {
   const [weatherData, setWeatherData] = useState([]);
 
   async function showWeatherDays() {
-    const data = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API}&q=${inputValue}&days=7&aqi=no&alerts=no`)
+    const data = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API}&q=${inputValue}&days=7&aqi=no&alerts=no`)
     const result = await data.json();
     setWeatherData(result.forecast.forecastday);
     console.log(result.forecast.forecastday);
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="container">
 
-      <div className="row mb-2 text-center text-white mt-5">
+      <div className="row mb-2 text-center text-white mt-3">
         <div className="col-lg-12">
           <h1 className="mb-3">Three Days Weather Forecast</h1>
           <h4>- Search City and Learn Weather Forecast -</h4>
